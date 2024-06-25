@@ -13,12 +13,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_AVI }}
-
     - name: Sync dotfiles to remote server
-      run: |
-        rsync -avz --delete ~/dotfiles/ user@remote-server:~/dotfiles/
-        ssh root@64.227.138.56 'cd ~/dotfiles && stow bash && stow vim && stow git'
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY_AVI }}
+        script: |
+          rsync -avz --delete ./ root@${{ secrets.REMOTE_HOST }}:~/dotfiles/
+          ssh user@${{ secrets.REMOTE_HOST }} 'cd ~/dotfiles && stow bash && stow vim && stow git'
