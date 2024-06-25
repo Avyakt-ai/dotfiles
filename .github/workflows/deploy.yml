@@ -21,4 +21,4 @@ jobs:
     - name: Sync dotfiles to remote server
       run: |
         rsync -avz --delete ~/dotfiles/ user@remote-server:~/dotfiles/
-        ssh user@remote-server 'cd ~/dotfiles && stow bash && stow vim && stow git'
+        ssh root@64.227.138.56 'cd ~/dotfiles && stow bash && stow vim && stow git'
