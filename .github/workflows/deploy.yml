@@ -16,7 +16,7 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY_AVI }}
         port: 22
-        script: la
+        script: mkdir ~/testing
       #   script: |
       #     rsync -avz --delete ./ root@${{ secrets.REMOTE_HOST }}:~/dotfiles/
       #     ssh user@${{ secrets.REMOTE_HOST }} 'cd ~/dotfiles && stow bash && stow vim && stow git'
