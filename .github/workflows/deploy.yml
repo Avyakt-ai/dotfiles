@@ -21,6 +21,10 @@ jobs:
         port: 22
         # script: mkdir ~/testing
         script: |
-          mkdir -p ~/dotfiles
-          rsync -avz --delete $GITHUB_WORKSPACE/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/dotfiles/
-          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'cd ~/dotfiles && stow bash && stow vim && stow git'
+          bash
+          cd ~/dotfiles
+          git pull origin main
+          stow bash
+          stow tmux
+          stow vim
+          
